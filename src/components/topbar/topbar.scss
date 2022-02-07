@@ -1,0 +1,111 @@
+@use "../../scss/colors" as *;
+
+.topbarContainer {
+  height: 50px;
+  width: 100%;
+  background: $bg-gradient;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbarLeft {
+  display: flex;
+  flex-direction: row;
+  .logo {
+    font-size: 12px;
+    display: none;
+  
+    @media only screen and (min-width: 400px) {
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 10px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}
+
+
+.logo-image{
+  width: 25px;
+  margin-left: 20px;
+  font-size: 24px;
+  @media only screen and (min-width: 400px) {
+    width: 35px;
+  }
+}
+
+.topbarRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+  margin-right: 50px;
+  overflow-x: hidden;
+  .topbarLink {
+    margin-right: 30px;
+    font-size: 12px;
+    cursor: pointer;
+    @media only screen and (min-width: 400px) {
+      font-size: 14px;
+    }
+  }
+}
+
+
+.active {
+  text-decoration: none;
+  margin-right: 20px;
+  color: white;
+}
+.non-active {
+  text-decoration: none;
+  margin-right: 20px;
+  color: rgb(179, 179, 179);
+}
+
+.topbarIcons {
+  display: flex;
+}
+
+.topbarIconItem {
+  margin-right: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.topbarIconBadge {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.topbarImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: none;
+  cursor: pointer;
+  @media only screen and (min-width: 400px) {
+    display: block;
+  }
+}
