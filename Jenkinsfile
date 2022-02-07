@@ -1,31 +1,24 @@
-pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
-     environment {
-            CI = 'true'
-        }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-                    steps {
-                        sh './jenkins/scripts/test.sh'
-                    }
-                }
-                stage('Deliver') {
-                            steps {
-                                sh './jenkins/scripts/deliver.sh'
-                                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                                sh './jenkins/scripts/kill.sh'
-                            }
-                        }
 
+pipeline {
+    agent any
+  //triggers {pollSCM('* * * * *')}
+  stages {
+    stage('Checkout') {
+      steps {
+        // Get some code from a GitHub repository
+        git branch: "main", url: 'https://github.com/Benjaminjbonnet/ProjectTwoFrontEnd.git'
+      }
     }
+     
+        stage('DockerBuild') {
+      steps {
+        sh ' docker build -t projecttwoviews:latest .'
+      }
+        }
+         stage('DockerRun') {
+      steps {
+        sh 'docker run  -p 3000:3000 projecttwoviews'
+      }
+        }
+  }
 }
