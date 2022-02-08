@@ -9,13 +9,7 @@ pipeline {
         git branch: "main", url: 'https://github.com/Benjaminjbonnet/ProjectTwoFrontEnd.git'
       }
     }
-       stage('Build') {
-      steps {
-        sh 'npm run build'
-        sh 'serve -s build'
-          
-      }
-       }
+    
         stage('DockerBuild') {
       steps {
         sh ' docker build -t projecttwoviews:latest .'
