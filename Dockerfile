@@ -1,6 +1,7 @@
-FROM node:alpine
-WORKDIR '/app'
-COPY package.json .
+FROM node:15.4 
+WORKDIR /app
+COPY package*.json .
 RUN npm install 
 COPY . . 
-CMD ["npm","start"]
+RUN npm run start
+
